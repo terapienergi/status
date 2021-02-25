@@ -81,6 +81,8 @@
      :component link-previews-settings/link-previews-settings}
     {:name      :privacy-and-security
      :component privacy-and-security/privacy-and-security}
+    {:name      :privacy-and-security-profile-pic-show-to
+     :component privacy-and-security/profile-pic-show-to}
     {:name      :appearance
      :component appearance/appearance}
     {:name      :appearance-profile-pic
