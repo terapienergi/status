@@ -62,7 +62,7 @@
     "amount": "수량",
     "appearance": "테마",
     "apply": "적용",
-    "are-you-sure-description": "지금부터 시드 구문을 다시 확인할 수 없습니다",
+    "are-you-sure-description": "지금부터 전체 시드 구문을 다시 확인할 수 없습니다",
     "are-you-sure-to-cancel": "정말 취소하시겠어요?",
     "are-you-sure?": "정말 삭제하시겠어요?",
     "ask-in-status": "질문 및 버그 신고",
@@ -211,6 +211,7 @@
         "other": "멤버"
     },
     "community-members-title": "멤버",
+    "community-message-preview": "{{community-name}} 가입 초대",
     "community-private-key": "커뮤니티 개인키",
     "community-requests-to-join-title": "멤버십 요청",
     "community-roles": "역할",
@@ -852,6 +853,7 @@
     "mark-all-read": "모두 읽음 처리",
     "master-account": "마스터 계정",
     "maybe-later": "나중에",
+    "member-ban": "멤버 내보내기",
     "member-kick": "멤버 내보내기",
     "members": {
         "other": "{{count}} 명"

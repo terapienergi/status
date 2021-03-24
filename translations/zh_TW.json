@@ -211,6 +211,7 @@
         "other": "{{count}}位成員"
     },
     "community-members-title": "成員",
+    "community-message-preview": "邀請加入{{community-name}}",
     "community-private-key": "社群管理私鑰",
     "community-requests-to-join-title": "會員申請",
     "community-roles": "角色",
@@ -1291,7 +1292,7 @@
     "timeline": "時間軸",
     "to": "到",
     "to-block": "區塊",
-    "to-enable-biometric": "要啟用{{bio-type-label}} ，您必須在解鎖螢幕上保存密碼",
+    "to-enable-biometric": "要啟用{{bio-type-label}} ，您必須在解鎖螢幕上勾選保存密碼",
     "to-encrypt-enter-password": "要加密帳號，請輸入密碼",
     "to-see-this-message": "要查看此訊息，",
     "token-auto-validate-decimals-error": "地址{{address}}上{{symbol}}代幣的小數位數錯誤－設置為{{expected}}但檢測為{{actual}}",

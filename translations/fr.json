@@ -719,7 +719,7 @@
     "keycard-recovery-no-key-header": "Il n'y a rien à \n récupérer ici",
     "keycard-recovery-no-key-text": "Votre Keycard n'a pas de clé stockée dessus. Pour l'utiliser, générez une nouvelle clé et choisissez votre Keycard pour stocker la clé.",
     "keycard-recovery-phrase-confirm-header": "Confirmer la phrase de récupération",
-    "keycard-recovery-phrase-confirmation-text": "Attention! C'est votre dernier chance. Sans la phrase de récupération, vous ne pourrez accéder ni à votre clé, ni aux actifs qui lui sont associés si vous perdez votre appareil.",
+    "keycard-recovery-phrase-confirmation-text": "Attention! C'est votre dernier chance. Sans la phrase de récupération, vous ne pourrez accéder ni à votre clé, ni aux actifs qui lui sont associés si vous perdez votre appareil. ",
     "keycard-recovery-phrase-confirmation-title": "Vous avez écrit la phrase de récupération?",
     "keycard-recovery-success-header": "Votre clé a été récupérée avec succès",
     "keycard-redeem-title": "Échangez contre",
