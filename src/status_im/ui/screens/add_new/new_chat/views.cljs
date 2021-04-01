@@ -18,7 +18,8 @@
             [clojure.string :as string]
             [status-im.ui.components.invite.views :as invite]
             [status-im.ethereum.ens :as ens]
-            [quo.platform :as platform])
+            [quo.platform :as platform]
+            [status-im.transport.filters.core :as filters])
   (:require-macros [status-im.utils.views :as views]))
 
 (defn- render-row [row]
@@ -60,25 +61,25 @@
 (defn get-validation-label [value]
   (case value
     :invalid
-    (i18n/label :t/user-not-found)
+    (i18n/label :t/profile-not-found)
     :yourself
     (i18n/label :t/can-not-add-yourself)))
 
+(defn search-contacts [filter-text {:keys [name alias nickname]}]
+  (or
+   (string/includes? (string/lower-case (str name)) filter-text)
+   (string/includes? (string/lower-case (str alias)) filter-text)
+   (when nickname
+     (string/includes? (string/lower-case (str nickname)) filter-text))))
+
 (defn filter-contacts [filter-text contacts]
-  (let [lower-filter-text (string/lower-case (str filter-text))
-        filter-fn         (fn [{:keys [name alias nickname]}]
-                            (or
-                             (string/includes? (string/lower-case (str name)) lower-filter-text)
-                             (string/includes? (string/lower-case (str alias)) lower-filter-text)
-                             (when nickname
-                               (string/includes? (string/lower-case (str nickname)) lower-filter-text))))]
+  (let [lower-filter-text (string/lower-case (str filter-text))]
     (if filter-text
-      (filter filter-fn contacts)
+      (filter (partial search-contacts lower-filter-text) contacts)
       contacts)))
 
 (defn is-valid-username? [username]
-  (let [is-chat-key? (and (string? username)
-                          (string/starts-with? username "0x")
+  (let [is-chat-key? (and (filters/is-public-key? username)
                           (= (count username) 132))
         is-ens? (ens/valid-eth-name-prefix? username)]
     (or is-chat-key? is-ens?)))
