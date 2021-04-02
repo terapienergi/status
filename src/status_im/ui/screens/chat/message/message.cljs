@@ -335,7 +335,11 @@
     [{:on-press #(react/copy-to-clipboard
                   (components.reply/get-quoted-text-with-mentions
                    (get content :parsed-text)))
-      :label    (i18n/label :t/sharing-copy-to-clipboard)}])))
+      :label    (i18n/label :t/sharing-copy-to-clipboard)}]
+    [{:on-press #(react/copy-to-clipboard
+                  (components.reply/get-quoted-text-with-mentions
+                   (get content :parsed-text)))
+      :label    "Pin"}])))
 
 (defn collapsible-text-message [_ _]
   (let [collapsed?   (reagent/atom false)

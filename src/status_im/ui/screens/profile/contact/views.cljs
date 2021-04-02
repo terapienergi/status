@@ -83,6 +83,16 @@
        (i18n/label :t/profile-details)]]
      [render-detail contact]]))
 
+(defn pin-settings [{:keys [pinned-messages]}]
+  [quo/list-item
+   {:title               (i18n/label :t/pinned-messages)
+    :size                :small
+    :accessibility-label :profile-nickname-item
+    :accessory           :text
+    :accessory-text      "1"
+    :on-press            #(re-frame/dispatch [:navigate-to :nickname])
+    :chevron             true}])
+
 (defn nickname-settings [{:keys [names]}]
   [quo/list-item
    {:title               (i18n/label :t/nickname)
@@ -187,6 +197,7 @@
                                         :subtitle second-name})]
                                      [react/view {:height 1 :background-color colors/gray-lighter :margin-top 8}]
                                      [nickname-settings contact]
+                                     [pin-settings contact]
                                      [react/view {:height 1 :background-color colors/gray-lighter}]
                                      [react/view {:padding-top 17 :flex-direction :row :align-items :stretch :flex 1}
                                       (for [{:keys [label] :as action} (actions contact muted?)
