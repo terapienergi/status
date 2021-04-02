@@ -1146,9 +1146,9 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
     }
 
     @ReactMethod
-    public void startWallet(final boolean watchNewBlocks) {
+    public void startWallet() {
         Log.d(TAG, "StartWallet");
-        Statusgo.startWallet(watchNewBlocks);
+        Statusgo.startWallet();
     }
 
     @ReactMethod

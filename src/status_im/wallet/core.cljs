@@ -563,9 +563,9 @@
 
 (re-frame/reg-fx
  ::start-wallet
- (fn [watch-new-blocks?]
-   (log/info "start-wallet fx" watch-new-blocks?)
-   (status/start-wallet watch-new-blocks?)))
+ (fn []
+   (log/info "start-wallet fx")
+   (status/start-wallet)))
 
 (def ms-10-min (datetime/minutes 10))
 (def ms-20-min (datetime/minutes 20))
@@ -626,7 +626,7 @@
      ::stop-wallet nil}))
 
 (fx/defn start-wallet
-  [{:keys [db] :as cofx} watch-new-blocks? on-recent-history-fetching]
+  [{:keys [db] :as cofx} on-recent-history-fetching]
   (let [old-timeout (get db :wallet-service/restart-timeout)
         state       (get db :wallet-service/state)
         timeout     (when-let [interval (get-restart-interval db)]
@@ -638,26 +638,25 @@
                                :wallet-service/restart-timeout timeout
                                :wallet/was-started? true
                                :wallet/on-recent-history-fetching on-recent-history-fetching))
-     ::start-wallet watch-new-blocks?
+     ::start-wallet nil
      ::utils.utils/clear-timeouts
      [old-timeout]}))
 
 (fx/defn restart-wallet-service
   [{:keys [db] :as cofx}
-   {:keys [force-start? watch-new-blocks? ignore-syncing-settings? on-recent-history-fetching]}]
+   {:keys [force-start? ignore-syncing-settings? on-recent-history-fetching]}]
   (when (or force-start? (:multiaccount db))
     (let [waiting? (get db :wallet/waiting-for-recent-history?)
           syncing-allowed? (mobile-network-utils/syncing-allowed? cofx)]
       (log/info "restart-wallet-service"
                 "force-start?" force-start?
-                "syncing-allowed?" syncing-allowed?
-                "watch-new-blocks?" watch-new-blocks?)
+                "syncing-allowed?" syncing-allowed?)
       (if (and (or syncing-allowed?
                    ignore-syncing-settings?)
                (or
                 waiting?
                 force-start?))
-        (start-wallet cofx (boolean watch-new-blocks?) on-recent-history-fetching)
+        (start-wallet cofx on-recent-history-fetching)
         (stop-wallet cofx)))))
 
 (def background-cooldown-time (datetime/minutes 3))

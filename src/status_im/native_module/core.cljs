@@ -277,10 +277,10 @@
   (log/debug "[native-module] stop-wallet")
   (.stopWallet ^js (status)))
 
-(defn start-wallet [watch-new-blocks?]
-  (log/debug "[native-module] start-wallet" watch-new-blocks?)
+(defn start-wallet []
+  (log/debug "[native-module] start-wallet")
   (when (status)
-    (.startWallet ^js (status) watch-new-blocks?)))
+    (.startWallet ^js (status))))
 
 (defn stop-local-notifications []
   (log/debug "[native-module] stop-local-notifications")
