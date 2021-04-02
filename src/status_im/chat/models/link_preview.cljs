@@ -27,6 +27,14 @@
                #{})
              {})))
 
+(fx/defn resolve-community-info
+  {:events [::resolve-community-info]}
+  [cofx community-id]
+  (fx/merge cofx
+            {::json-rpc/call [{:method     (json-rpc/call-ext-method "requestCommunityInfoFromMailserver")
+                               :params     [community-id]
+                               :on-error   #(log/error "Failed to request community info from mailserver")}]}))
+
 (fx/defn load-link-preview-data
   {:events [::load-link-preview-data]}
   [cofx link]
@@ -45,6 +53,15 @@
    cofx
    :link-previews-cache
    (assoc (get multiaccount :link-previews-cache {}) site data)))
+
+(defn community-link [id]
+  (str "https://status.im/communities/" id))
+
+(defn cache-community-preview-data
+  [{:keys [id] :as community}]
+  (re-frame/dispatch [::cache-link-preview-data
+                      (community-link id)
+                      community]))
 
 (fx/defn should-suggest-link-preview
   {:events [::should-suggest-link-preview]}
