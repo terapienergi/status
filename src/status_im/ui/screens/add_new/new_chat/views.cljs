@@ -67,13 +67,13 @@
 
 (defn search-contacts [filter-text {:keys [name alias nickname]}]
   (or
-   (string/includes? (string/lower-case (str name)) filter-text)
-   (string/includes? (string/lower-case (str alias)) filter-text)
+   (string/includes? (string/lower-case name) filter-text)
+   (string/includes? (string/lower-case alias) filter-text)
    (when nickname
-     (string/includes? (string/lower-case (str nickname)) filter-text))))
+     (string/includes? (string/lower-case nickname) filter-text))))
 
 (defn filter-contacts [filter-text contacts]
-  (let [lower-filter-text (string/lower-case (str filter-text))]
+  (let [lower-filter-text (string/lower-case filter-text)]
     (if filter-text
       (filter (partial search-contacts lower-filter-text) contacts)
       contacts)))
