@@ -1,65 +1,88 @@
-version: 2.1
-
-jobs:
-  build1:
-    docker:
-      - image: circleci/ruby:2.4-node
+version: 2
+jobs: # we now have TWO jobs, so that a workflow can coordinate them!
+  one: # This is our first job.
+    docker: # it uses the docker executor
+      - image: circleci/clojure:lein-2.9.5
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-      - image: circleci/postgres:9.4.12-alpine
+    # Steps are a list of commands to run inside the docker container above.
+    steps:
+      - checkout # this pulls code down from GitHub
+      - run: echo "A first hello" # This prints "A first hello" to stdout.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+  two: # This is our second job.
+    docker: # it runs inside a docker image, the same as above.
+      - image: circleci/clojure:lein-2.9.5
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - save_cache: # Caches dependencies with a cache key
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/circleci-demo-workflows
-      
-  build2:
-    docker:
-      - image: circleci/ruby:2.4-node
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-      - image: circleci/postgres:9.4.12-alpine
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - restore_cache: # Restores the cached dependency.
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          name: Running tests
-          command: make test
-  build3:
-    docker:
-      - image: circleci/ruby:2.4-node
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-      - image: circleci/postgres:9.4.12-alpine
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-    steps:
-      - restore_cache: # Restores the cached dependency.
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run:
-          name: Precompile assets
-          command: bundle exec rake assets:precompile
-#...                          
+      - run: echo "A more familiar hi" # We run a similar echo command to above.
+      - run: sleep 15 # and then sleep for 15 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+      - run: sleep 590 # a command telling the job to "sleep" for 25 seconds.
+# Under the workflows: map, we can coordinate our two jobs, defined above.
 workflows:
-  build_and_test: # name of your workflow
-    jobs:
-      - build1
-      - build2:
-          requires:
-           - build1 # wait for build1 job to complete successfully before starting
-           # see circleci.com/docs/2.0/workflows/ for more examples.
-      - build3:
-          requires:
-           - build1 # wait for build1 job to complete successfully before starting
-           # run build2 and build3 concurrently to save time.
+  version: 2
+  one_and_two: # this is the name of our workflow
+    jobs: # and here we list the jobs we are going to run.
+      - one
+      - two
